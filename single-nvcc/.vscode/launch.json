@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug main (MSVC)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/single-nvcc/build/main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/single-nvcc",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "Build with NVCC (Debug)"
+        },
+        {
+            "name": "Debug main (Nsight CUDA)",
+            "type": "cuda-gdb",
+            "request": "launch",
+            "program": "${workspaceFolder}/single-nvcc/build/main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/single-nvcc",
+            "preLaunchTask": "Build with NVCC (Debug)"
+        }
+    ]
+}

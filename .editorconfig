@@ -1,0 +1,35 @@
+# EditorConfig - https://editorconfig.org
+root = true
+
+# 默认设置
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = crlf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# PowerShell 脚本
+[*.{ps1,psm1,psd1}]
+indent_size = 2
+
+# JSON/YAML 配置文件
+[*.{json,jsonc,yaml,yml}]
+indent_size = 2
+
+# CMake
+[CMakeLists.txt]
+indent_style = tab
+
+# Markdown
+[*.md]
+trim_trailing_whitespace = false
+
+# CUDA 源文件
+[*.{cu,cuh}]
+indent_size = 4
+
+# C/C++ 头文件
+[*.{h,hpp,c,cpp}]
+indent_size = 4

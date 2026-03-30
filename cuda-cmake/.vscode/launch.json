@@ -1,0 +1,40 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug cudatest (MSVC)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/cuda-cmake/build-ninja-Debug/cudatest.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/cuda-cmake",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "CMake Build (Debug)"
+        },
+        {
+            "name": "Debug cudatest (Nsight CUDA)",
+            "type": "cuda-gdb",
+            "request": "launch",
+            "program": "${workspaceFolder}/cuda-cmake/build-ninja-Debug/cudatest.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/cuda-cmake",
+            "environment": [],
+            "preLaunchTask": "CMake Build (Debug)"
+        },
+        {
+            "name": "Release cudatest",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/cuda-cmake/build-ninja-Release/cudatest.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/cuda-cmake",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "CMake Build (Release)"
+        }
+    ]
+}

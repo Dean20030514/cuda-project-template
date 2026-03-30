@@ -1,0 +1,122 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake Build (Debug)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/cuda-cmake/scripts/configure_build_run.ps1",
+        "-Configuration",
+        "Debug",
+        "-BuildOnly"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/cuda-cmake"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "CMake Build (Release)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/cuda-cmake/scripts/configure_build_run.ps1",
+        "-Configuration",
+        "Release",
+        "-BuildOnly"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/cuda-cmake"
+      },
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "CMake Run (Debug)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/cuda-cmake/scripts/configure_build_run.ps1",
+        "-Configuration",
+        "Debug"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/cuda-cmake"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "CMake Run (Release)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/cuda-cmake/scripts/configure_build_run.ps1",
+        "-Configuration",
+        "Release"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/cuda-cmake"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "CMake Run (Release + FastMath)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/cuda-cmake/scripts/configure_build_run.ps1",
+        "-Configuration",
+        "Release",
+        "-FastMath"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/cuda-cmake"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "CMake Clean Build (Debug)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/cuda-cmake/scripts/configure_build_run.ps1",
+        "-Configuration",
+        "Debug",
+        "-Clean"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/cuda-cmake"
+      },
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

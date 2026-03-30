@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build with NVCC (Debug)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/single-nvcc/scripts/build_and_run.ps1",
+        "-BuildOnly"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/single-nvcc"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/single-nvcc/scripts/build_and_run.ps1"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/single-nvcc"
+      }
+    },
+    {
+      "label": "Run (Release)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/single-nvcc/scripts/build_and_run.ps1",
+        "-Configuration",
+        "Release"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/single-nvcc"
+      }
+    },
+    {
+      "label": "Run (Release, fatbin+fast-math)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/single-nvcc/scripts/build_and_run.ps1",
+        "-Configuration",
+        "Release",
+        "-FastMath"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/single-nvcc"
+      }
+    },
+    {
+      "label": "Run (Release, sm=89)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/single-nvcc/scripts/build_and_run.ps1",
+        "-Configuration",
+        "Release",
+        "-Sm",
+        "89",
+        "-FastMath"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/single-nvcc"
+      }
+    }
+  ]
+}
