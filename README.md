@@ -24,10 +24,14 @@ An out-of-the-box CUDA project template supporting Windows + VS Code development
 
 | 组件 Component | 要求 Requirement |
 |----------------|------------------|
-| CUDA Toolkit | >= 12.0 |
+| CUDA Toolkit | >= 13.0 |
 | CMake | >= 3.24 |
 | Visual Studio | 2022 / 2026 Build Tools |
 | VS Code 扩展 Extensions | C/C++, CMake Tools |
+
+> **说明 Note**：消费级 Blackwell（sm_120 / RTX 50）需 **CUDA 12.8+** 工具链；本仓库统一要求 **>= 13.0**，与顶部徽章一致。
+>
+> **Note**: Consumer Blackwell (sm_120 / RTX 50) requires **CUDA 12.8+**; this repo standardizes on **>= 13.0** to match the badge above.
 
 验证环境 | Verify environment:
 
@@ -69,10 +73,13 @@ cuda-quickstart/
 │   ├── CMakeLists.txt
 │   ├── src/main.cu
 │   └── scripts/configure_build_run.ps1
-└── scripts/global/                # 全局环境配置 | Global environment configuration
-    ├── enable_cuda_env.ps1        # 临时启用 | Temporary enable
-    ├── install_ecuda_alias.ps1    # 安装快捷命令 | Install shortcut command
-    └── install_cuda_env_persistent.ps1  # 持久化 | Persistent installation
+└── scripts/
+    ├── common/VsHelper.psm1              # VS 开发环境辅助模块 | VS dev env helper module
+    └── global/                            # 全局环境配置 | Global environment configuration
+        ├── enable_cuda_env.ps1            # 临时启用 | Temporary enable
+        ├── install_ecuda_alias.ps1        # 安装快捷命令 | Install shortcut command
+        ├── install_cuda_env_persistent.ps1  # 持久化安装 | Persistent installation
+        └── remove_cuda_env_persistent.ps1   # 卸载持久化 | Remove persistent installation
 ```
 
 ## Build Options | 构建选项
