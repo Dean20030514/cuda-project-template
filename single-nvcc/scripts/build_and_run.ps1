@@ -2,7 +2,7 @@ param(
     [switch]$BuildOnly,
     [ValidateSet('Debug','Release')]
     [string]$Configuration = 'Debug',
-    # 指定 SM 架构（如 89、86、75）。不指定时默认生成通用 fatbin (sm_90/89/86/75 + PTX)。
+    # 指定 SM 架构（如 120、89、86）。不指定时默认多架构 fatbin（含 sm_120/100/90/89/86 + PTX compute_120）。
     [string]$Sm,
     # 启用 --use_fast_math（Release/RelWithDebInfo 建议开启）
     [switch]$FastMath
@@ -33,12 +33,12 @@ try {
         $gencode = "-gencode=arch=compute_${arch},code=sm_${arch} -gencode=arch=compute_${arch},code=compute_${arch}"
     } else {
         $gencode = @(
+            '-gencode=arch=compute_120,code=sm_120',
             '-gencode=arch=compute_100,code=sm_100',
             '-gencode=arch=compute_90,code=sm_90',
             '-gencode=arch=compute_89,code=sm_89',
             '-gencode=arch=compute_86,code=sm_86',
-            '-gencode=arch=compute_75,code=sm_75',
-            '-gencode=arch=compute_100,code=compute_100'
+            '-gencode=arch=compute_120,code=compute_120'
         ) -join ' '
     }
 

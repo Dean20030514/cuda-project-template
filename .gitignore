@@ -33,6 +33,7 @@ Makefile
 # IDE and editor files | IDE 和编辑器文件
 .vs/
 .vscode/*.log
+.claude/
 *.suo
 *.user
 *.sln

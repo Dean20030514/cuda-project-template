@@ -70,7 +70,7 @@
       }
     },
     {
-      "label": "Run (Release, sm=89)",
+      "label": "Run (Release, sm=120)",
       "type": "shell",
       "command": "powershell",
       "args": [
@@ -82,7 +82,7 @@
         "-Configuration",
         "Release",
         "-Sm",
-        "89",
+        "120",
         "-FastMath"
       ],
       "options": {

@@ -71,11 +71,14 @@ $parts = if ($path) { $path.Split($sep) } else { @() }
 
 function Test-PathShouldRemove([string]$p){
   if (-not $p) { return $false }
-  if ($cudaRoot) {
-    return $p.TrimStart() -like (Join-Path $cudaRoot '*')
-  }
-  # Fallback: remove typical CUDA bin paths
-  return ($p -match 'NVIDIA GPU Computing Toolkit\\CUDA') -and ($p -match '\\bin(\\|$)')
+  $trimmed = $p.TrimStart()
+  # Match paths under CUDA_PATH root
+  if ($cudaRoot -and ($trimmed -like (Join-Path $cudaRoot '*'))) { return $true }
+  # Match separate cuDNN install paths (e.g. C:\Program Files\NVIDIA\CUDNN\...)
+  if ($trimmed -match 'NVIDIA\\CUDNN' -and $trimmed -match '\\bin(\\|$)') { return $true }
+  # Fallback: match typical CUDA Toolkit bin paths
+  if ($trimmed -match 'NVIDIA GPU Computing Toolkit\\CUDA' -and $trimmed -match '\\bin(\\|$)') { return $true }
+  return $false
 }
 
 $kept = New-Object System.Collections.Generic.List[string]

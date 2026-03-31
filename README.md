@@ -94,8 +94,12 @@ cuda-quickstart/
 # 不指定 -CudaArch/-Sm 参数 | Do not specify -CudaArch/-Sm parameter
 
 # 指定架构 | Specify architecture
+# 数据中心 Blackwell (B100/B200, sm_100) | Datacenter Blackwell
 -CudaArch "100"   # cuda-cmake
 -Sm 100           # single-nvcc
+# 消费级 RTX 50 系列 (sm_120，勿与 sm_100 混用) | Consumer RTX 50 (sm_120, not sm_100)
+-CudaArch "120"   # cuda-cmake
+-Sm 120           # single-nvcc
 ```
 
 ### Performance Optimization | 性能优化
@@ -109,10 +113,10 @@ cuda-quickstart/
 
 ```powershell
 # cuda-cmake: Release + RTX 50 + FastMath
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\configure_build_run.ps1 -Configuration Release -CudaArch "100" -FastMath
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\configure_build_run.ps1 -Configuration Release -CudaArch "120" -FastMath
 
 # single-nvcc: Release + RTX 50 + FastMath
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build_and_run.ps1 -Configuration Release -Sm 100 -FastMath
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build_and_run.ps1 -Configuration Release -Sm 120 -FastMath
 ```
 
 ## Global Environment | 全局环境配置
@@ -150,7 +154,8 @@ ecuda
 | RTX 30 | Ampere | 86 | RTX 3060, 3080, 3090 |
 | RTX 40 | Ada Lovelace | 89 | RTX 4060, 4080, 4090 |
 | H100 | Hopper | 90 | H100 |
-| RTX 50 | Blackwell | 100 | RTX 5070, 5080, 5090 |
+| B100 / B200 | Blackwell (DC) | 100 | B100, B200, GB200 |
+| RTX 50 | Blackwell | 120 | RTX 5070, 5080, 5090 |
 
 > 使用 `nvidia-smi` 查看 GPU 型号，对照上表选择 SM 值。
 >

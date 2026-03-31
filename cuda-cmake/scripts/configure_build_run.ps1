@@ -67,7 +67,7 @@ $steps = @(
 )
 if (-not $BuildOnly) {
     $steps += '&&'
-    $steps += ('pushd "{0}" && cudatest.exe && popd' -f $buildDir)
+    $steps += ('"{0}\cudatest.exe"' -f $buildDir)
 }
 $cfgCmd = $steps -join ' '
 
