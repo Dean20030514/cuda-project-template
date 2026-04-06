@@ -84,7 +84,7 @@ public:
         if (status == cudaSuccess) return true;
         if (status == cudaErrorNotReady) return false;
         CUDA_CHECK_THROW(status);
-        return false;
+        return false; // unreachable: CUDA_CHECK_THROW always throws for error status
     }
 
 private:

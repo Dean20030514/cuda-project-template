@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cuda_raii.h"
+#include <climits>
 #include <cstdio>
 
 // ============================================================================
@@ -35,7 +36,9 @@
  * @return 需要的 grid 大小 | Required grid size
  */
 inline unsigned int calcGridSize(size_t n, unsigned int blockSize) {
-    return static_cast<unsigned int>((n + blockSize - 1) / blockSize);
+    size_t grid = (n + blockSize - 1) / blockSize;
+    assert(grid <= UINT_MAX && "grid size exceeds unsigned int range");
+    return static_cast<unsigned int>(grid);
 }
 
 // ============================================================================

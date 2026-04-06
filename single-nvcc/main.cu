@@ -28,11 +28,11 @@ int main() {
 
     try {
         measureBandwidth();
-        bool ok = demoKernel(add_one);
-        demoAsyncStream();
+        bool ok1 = demoKernel(add_one);
+        bool ok2 = demoAsyncStream();
 
         printf("\n=== All demos completed. ===\n");
-        return ok ? 0 : 1;
+        return (ok1 && ok2) ? 0 : 1;
     } catch (const std::exception& e) {
         fprintf(stderr, "Fatal: %s\n", e.what());
         return EXIT_FAILURE;
