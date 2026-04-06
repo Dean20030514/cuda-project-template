@@ -1,4 +1,4 @@
-# CUDA Quickstart
+# CUDA Project Template
 
 [![CUDA](https://img.shields.io/badge/CUDA-12.0+-green.svg)](https://developer.nvidia.com/cuda-toolkit)
 [![Windows](https://img.shields.io/badge/Platform-Windows-blue.svg)](https://www.microsoft.com/windows)
@@ -119,7 +119,7 @@ After a successful run, terminal output looks similar to this (exact values vary
 ## Project Structure | 项目结构
 
 ```
-cuda-quickstart/
+cuda-project-template/
 ├── common/
 │   ├── cuda_helper.h              # 统一头文件（umbrella）| Umbrella include for backward compat
 │   ├── cuda_check.h               # 错误检查宏 | Error checking macros (CUDA_CHECK, _THROW)
@@ -270,6 +270,7 @@ ecuda
 
 | Class | Description |
 |-------|-------------|
+| `UniqueHandle<T, Null, Deleter>` | 通用 RAII handle 包装（所有 handle 类的基础）| Generic RAII handle wrapper (base for all handle classes) |
 | `CudaStream` | RAII 流包装，支持非阻塞流和查询 | RAII stream wrapper with non-blocking and query support |
 | `CudaEvent` | RAII 事件包装，支持计时 | RAII event wrapper with timing |
 | `CudaDeviceMemory<T>` | RAII 设备内存，支持同步/异步拷贝 | RAII device memory with sync/async copy |
@@ -279,12 +280,17 @@ ecuda
 | `CudnnHandle` | RAII cuDNN handle (requires `HAVE_CUDNN`) |
 | `CudnnTensorDescriptor` | RAII cuDNN tensor descriptor (requires `HAVE_CUDNN`) |
 
+> **错误处理差异 Note on error handling**：核心类（`CudaStream`、`CudaEvent`、`CudaDeviceMemory`、`CudaPinnedMemory`）使用 **throw-style**（`CUDA_CHECK_THROW`），可被 try/catch 捕获。库包装类（`CublasHandle`、`CufftPlan`、`CudnnHandle`、`CudnnTensorDescriptor`）使用 **exit-style**（`CUBLAS_CHECK` / `CUFFT_CHECK` / `CUDNN_CHECK`），初始化失败会直接 `exit(EXIT_FAILURE)`，不会抛出异常。
+>
+> **Note**: Core classes (`CudaStream`, `CudaEvent`, `CudaDeviceMemory`, `CudaPinnedMemory`) use **throw-style** error handling (`CUDA_CHECK_THROW`) and can be caught with try/catch. Library wrapper classes (`CublasHandle`, `CufftPlan`, `CudnnHandle`, `CudnnTensorDescriptor`) use **exit-style** macros (`CUBLAS_CHECK` / `CUFFT_CHECK` / `CUDNN_CHECK`) — initialization failures call `exit(EXIT_FAILURE)` instead of throwing.
+
 ### Utility Functions | 工具函数
 
 | Function | Description |
 |----------|-------------|
 | `calcGridSize(n, block)` | 计算 grid 大小 | Calculate grid size |
 | `printDeviceInfo(device)` | 打印 GPU 设备信息 | Print GPU device info |
+| `elapsedMs(start, end)` | 测量两个 `CudaEvent` 间的耗时（ms，阻塞）| Elapsed ms between two `CudaEvent`s (blocking) |
 | `measureBandwidth(size)` | 测量 H2D/D2H 传输带宽 | Measure H2D/D2H bandwidth |
 
 ## FAQ | 常见问题
