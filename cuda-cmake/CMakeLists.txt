@@ -25,6 +25,7 @@ option(CUDA_ENABLE_FAST_MATH "Enable --use_fast_math for CUDA files in Release/R
 option(MSVC_STATIC_RUNTIME "Link static MSVC runtime (/MT)" OFF)
 option(ENABLE_CUBLAS "Enable cuBLAS integration" ON)
 option(ENABLE_CUFFT "Enable cuFFT integration" ON)
+option(BUILD_TESTING "Build unit tests (requires GoogleTest via FetchContent)" ON)
 
 target_link_libraries(cudatest PRIVATE CUDA::cudart)
 
@@ -178,5 +179,10 @@ else()
 endif()
 message(STATUS "=====================================")
 message(STATUS "")
+
+if (BUILD_TESTING)
+	enable_testing()
+	add_subdirectory(tests)
+endif()
 
 install(TARGETS cudatest RUNTIME DESTINATION bin)

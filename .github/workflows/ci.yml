@@ -51,4 +51,5 @@ jobs:
           # this flag and use a container/runner with GPU support.
           cmake -B build -S cuda-cmake \
             -DCMAKE_CUDA_ARCHITECTURES=89 \
-            -DCMAKE_CUDA_COMPILER_WORKS=1
+            -DCMAKE_CUDA_COMPILER_WORKS=1 \
+            -DBUILD_TESTING=OFF
